@@ -16,6 +16,7 @@ An asynchronous notification service built with **Spring Boot** and **Apache Kaf
 * **Idempotent Consumer:** Prevents duplicate notifications. Each event has a unique `eventId`, which is checked against a PostgreSQL database before processing.
 * **Retry Mechanism:** If processing fails (simulated by throwing an exception), the message is retried with exponential backoff (2 seconds, then 4 seconds).
 * **Dead Letter Queue (DLQ):** After 3 failed attempts, the message is moved to a Dead Letter Topic (`notification-topic-dlt`) so it doesn't block the queue and can be manually investigated.
+* **Unit & Integration Tests:** The core logic is covered by JUnit 5, Mockito, and Spring Boot Test to ensure reliability.
 
 ## How to Run
 
