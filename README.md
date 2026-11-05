@@ -17,6 +17,7 @@ An asynchronous notification service built with **Spring Boot** and **Apache Kaf
 * **Retry Mechanism:** If processing fails (simulated by throwing an exception), the message is retried with exponential backoff (2 seconds, then 4 seconds).
 * **Dead Letter Queue (DLQ):** After 3 failed attempts, the message is moved to a Dead Letter Topic (`notification-topic-dlt`) so it doesn't block the queue and can be manually investigated.
 * **Unit & Integration Tests:** The core logic is covered by JUnit 5, Mockito, and Spring Boot Test to ensure reliability.
+* **API Documentation (Swagger UI):** Interactive API documentation is automatically generated and available at `/swagger-ui.html`.
 
 ## How to Run
 

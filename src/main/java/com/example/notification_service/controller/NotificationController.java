@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/notifications")
+@Tag(name = "Notification API", description = "Endpoint for sending notifications")
 public class NotificationController {
 
     private final KafkaTemplate<String, NotificationEvent> kafkaTemplate;
@@ -22,6 +25,7 @@ public class NotificationController {
     }
 
     @PostMapping
+    @Operation(summary = "Send a notification", description = "Accepts a notification event and publishes it to Kafka")
     public String sendNotification(@RequestBody NotificationEvent event) {
         // Generate eventId if the client didn't provide one
         if (event.getEventId() == null || event.getEventId().isEmpty()) {
